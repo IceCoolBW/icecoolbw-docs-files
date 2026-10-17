@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minecraft 材質包安裝教學</title>
+<style>
+:root {
+  --bg: #f3f5ef;
+  --surface: #ffffff;
+  --text: #20261d;
+  --muted: #5d6857;
+  --line: #d5dccd;
+  --accent: #2f7d32;
+  --accent-ink: #ffffff;
+  --code-bg: #20261d;
+  --code-text: #e8f0df;
+  --good: #2f7d32;
+  --bad: #b3261e;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151a13;
+    --surface: #1d241b;
+    --text: #e6ecde;
+    --muted: #9aa793;
+    --line: #34402f;
+    --accent: #7fcf82;
+    --accent-ink: #10200f;
+    --code-bg: #0e120d;
+    --code-text: #e8f0df;
+    --good: #7fcf82;
+    --bad: #ff8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151a13;
+  --surface: #1d241b;
+  --text: #e6ecde;
+  --muted: #9aa793;
+  --line: #34402f;
+  --accent: #7fcf82;
+  --accent-ink: #10200f;
+  --code-bg: #0e120d;
+  --code-text: #e8f0df;
+  --good: #7fcf82;
+  --bad: #ff8a80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans HK", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  line-height: 1.8;
+}
+.layout {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+}
+nav.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  font-size: 0.92rem;
+}
+nav.toc p { margin: 0 0 8px; font-weight: 700; }
+nav.toc a {
+  display: block;
+  padding: 4px 0 4px 12px;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+  text-decoration: none;
+  line-height: 1.5;
+}
+nav.toc a:hover, nav.toc a.active { color: var(--text); border-left-color: var(--accent); }
+main { min-width: 0; }
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.bar .btns { display: flex; gap: 8px; }
+button, .linkbtn {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+}
+button:hover, .linkbtn:hover { border-color: var(--accent); }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+article {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 32px clamp(18px, 4vw, 44px);
+}
+article h1 { font-size: 1.9rem; line-height: 1.35; margin: 0 0 16px; }
+article h2 {
+  font-size: 1.35rem;
+  margin: 2.4em 0 0.6em;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent);
+}
+article h3 { font-size: 1.1rem; margin: 1.6em 0 0.4em; }
+article p, article li { max-width: 68ch; }
+article a { color: var(--accent); }
+article hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+article blockquote {
+  margin: 1em 0;
+  padding: 4px 16px;
+  border-left: 4px solid var(--accent);
+  color: var(--muted);
+}
+article code {
+  font-family: "JetBrains Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.pre-wrap { position: relative; margin: 1em 0; }
+article pre {
+  margin: 0;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  line-height: 1.55;
+}
+article pre code { background: none; padding: 0; color: inherit; }
+.pre-wrap button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.12);
+  color: #e8f0df;
+  border-color: rgba(255,255,255,0.25);
+}
+.table-wrap { overflow-x: auto; margin: 1em 0; }
+article table { border-collapse: collapse; min-width: 100%; }
+article th, article td {
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+article th { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.status { padding: 48px 8px; text-align: center; color: var(--muted); }
+.status.error { color: var(--bad); }
+.status small { display: block; margin-top: 8px; color: var(--muted); }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; padding: 16px 12px 48px; }
+  nav.toc { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="目錄"></nav>
+  <main>
+    <div class="bar">
+      <span id="meta">準備載入…</span>
+      <span class="btns">
+        <button id="reload" type="button">重新載入</button>
+        <a class="linkbtn" id="src" target="_blank" rel="noopener">在 GitHub 開啟</a>
+      </span>
+    </div>
+    <article id="content" aria-live="polite">
+      <div class="status">正在從 GitHub 載入教學內容…</div>
+    </article>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<script>
+// ===== 設定：要擷取的來源 =====
+var OWNER = "IceCoolBW";
+var REPO = "m3e-pack-assets";
+var BRANCH = "main";
+var PATH = "how-to-install.md";
+
+var RAW_URL = "https://raw.githubusercontent.com/" + OWNER + "/" + REPO + "/" + BRANCH + "/" + PATH;
+var PAGE_URL = "https://github.com/" + OWNER + "/" + REPO + "/blob/" + BRANCH + "/" + PATH;
+
+var contentEl = document.getElementById("content");
+var tocEl = document.getElementById("toc");
+var metaEl = document.getElementById("meta");
+document.getElementById("src").href = PAGE_URL;
+
+function showError(msg) {
+  contentEl.innerHTML = "";
+  var box = document.createElement("div");
+  box.className = "status error";
+  box.textContent = msg;
+  var small = document.createElement("small");
+  small.textContent = "請檢查網路連線，或按「重新載入」重試。";
+  box.appendChild(small);
+  contentEl.appendChild(box);
+  tocEl.innerHTML = "";
+}
+
+function render(markdown) {
+  var html;
+  if (window.marked && window.DOMPurify) {
+    html = DOMPurify.sanitize(marked.parse(markdown, { gfm: true, breaks: false }));
+    contentEl.innerHTML = html;
+  } else {
+    // 外部函式庫載入失敗時，退回顯示純文字
+    contentEl.innerHTML = "";
+    var pre = document.createElement("pre");
+    pre.textContent = markdown;
+    contentEl.appendChild(pre);
+    tocEl.innerHTML = "";
+    return;
+  }
+
+  // 外部連結在新分頁開啟
+  contentEl.querySelectorAll("a[href]").forEach(function (a) {
+    if (/^https?:/i.test(a.getAttribute("href"))) {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
+  });
+
+  // 表格加上橫向捲動容器
+  contentEl.querySelectorAll("table").forEach(function (t) {
+    var w = document.createElement("div");
+    w.className = "table-wrap";
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
+
+  // 程式碼區塊加上複製按鈕
+  contentEl.querySelectorAll("pre").forEach(function (pre) {
+    var wrap = document.createElement("div");
+    wrap.className = "pre-wrap";
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(pre);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "複製";
+    btn.addEventListener("click", function () {
+      var text = pre.innerText;
+      var done = function () {
+        btn.textContent = "已複製";
+        setTimeout(function () { btn.textContent = "複製"; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () {});
+      }
+    });
+    wrap.appendChild(btn);
+  });
+
+  buildToc();
+}
+
+function buildToc() {
+  tocEl.innerHTML = "";
+  var heads = contentEl.querySelectorAll("h2");
+  if (!heads.length) return;
+  var title = document.createElement("p");
+  title.textContent = "目錄";
+  tocEl.appendChild(title);
+  var links = [];
+  heads.forEach(function (h, i) {
+    h.id = "sec-" + (i + 1);
+    var a = document.createElement("a");
+    a.href = "#" + h.id;
+    a.textContent = h.textContent;
+    tocEl.appendChild(a);
+    links.push({ a: a, h: h });
+  });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (l) { l.a.classList.toggle("active", l.h === e.target); });
+        }
+      });
+    }, { rootMargin: "0px 0px -70% 0px" });
+    links.forEach(function (l) { io.observe(l.h); });
+  }
+}
+
+function load() {
+  contentEl.innerHTML = '<div class="status">正在從 GitHub 載入教學內容…</div>';
+  metaEl.textContent = "載入中…";
+  // 加上時間參數避免瀏覽器快取舊內容
+  fetch(RAW_URL + "?t=" + Date.now(), { cache: "no-store" })
+    .then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.text();
+    })
+    .then(function (text) {
+      render(text);
+      var d = new Date();
+      metaEl.textContent = "已於 " + d.toLocaleTimeString("zh-TW") + " 從 GitHub 取得最新內容";
+    })
+    .catch(function (err) {
+      metaEl.textContent = "載入失敗";
+      showError("無法載入教學內容（" + err.message + "）");
+    });
+}
+
+document.getElementById("reload").addEventListener("click", load);
+load();
+</script>
+</body>
+</html>
