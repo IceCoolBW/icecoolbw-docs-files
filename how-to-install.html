@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Minecraft 材質包完整教學 — how-to-install</title>
+  <meta name="description" content="Material Expressive v5 材質包安裝說明（Java 版 1.20.2 ~ 26.x）" />
+  <style>
+    :root{
+      --bg:#fbfbfd; --card:#fff; --muted:#6b7280; --accent:#2563eb;
+      --border:#e6e9ef; --code-bg:#0b1220; --code-fg:#e6eef6;
+    }
+    body{
+      font-family: "Noto Sans TC", system-ui, -apple-system, "Helvetica Neue", Arial;
+      background:var(--bg); color:#111827; margin:0; line-height:1.65;
+    }
+    .wrap{max-width:900px;margin:40px auto;padding:28px;background:var(--card);border:1px solid var(--border);box-shadow:0 6px 18px rgba(12,22,39,0.06);border-radius:10px;}
+    h1,h2,h3{color:#0f172a;margin:1.2em 0 0.4em;}
+    h1{font-size:1.6rem}
+    h2{font-size:1.25rem}
+    p{margin:0.6em 0;}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    pre{background:#0b1220;color:var(--code-fg);padding:14px;border-radius:8px;overflow:auto;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Sans Mono", monospace;font-size:13px;line-height:1.5}
+    code{background:#f3f4f6;padding:0.15em 0.35em;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Sans Mono", monospace}
+    table{width:100%;border-collapse:collapse;margin:0.6em 0}
+    th,td{padding:10px;border:1px solid var(--border);text-align:left}
+    blockquote{border-left:4px solid #d1d5db;background:#f8fafc;padding:12px 16px;color:var(--muted);margin:0.8em 0;border-radius:6px}
+    ul,ol{padding-left:1.25em;margin:0.6em 0}
+    .muted{color:var(--muted);font-size:0.95em}
+    .repo-link{font-size:0.95rem;margin-bottom:12px;display:block}
+    .code-tree{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Sans Mono", monospace;background:#f8fafc;padding:10px;border-radius:6px;border:1px solid var(--border);white-space:pre}
+    .note{background:#fff8e6;border:1px solid #fdebb2;padding:10px;border-radius:6px;color:#6a4e00}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="repo-link" href="https://github.com/IceCoolBW/m3e-pack-assets/blob/main/how-to-install" target="_blank" rel="noopener">原始檔案：how-to-install（GitHub）</a>
+
+    <h1>Minecraft 材質包完整教學</h1>
+    <p class="muted">適用 Java 版 1.20.2 ~ 26.x。基岩版的資源包結構完全不同，不適用本文。</p>
+    <hr />
+
+    <h2>一、安裝前先搞懂三件事</h2>
+    <ol>
+      <li>
+        <strong>材質包可以不解壓縮</strong><br />
+        Minecraft 可以直接讀取 <code>.zip</code>。只有在你想整理成資料夾、編輯 <code>pack.mcmeta</code>，或使用資料夾分類模組時，才需要解壓縮。
+      </li>
+      <li>
+        <strong>判斷材質包是否可用</strong><br />
+        根目錄必須直接看到 <code>pack.mcmeta</code> 和 <code>assets</code> 資料夾。
+        <p>✅ 正確：</p>
+        <div class="code-tree">
+Material Expressive v5/
+ ┣━━ pack.mcmeta
+ ┣━━ pack.png
+ ┗━━ assets/
+        </div>
+        <p>❌ 錯誤（多包了一層，遊戲會認不出來）：</p>
+        <div class="code-tree">
+Material Expressive v5/
+ ┗━━ Material Expressive v5/
+     ┣━━ pack.mcmeta
+     ┗━━ assets/
+        </div>
+      </li>
+      <li>
+        <strong>版本相容性</strong><br />
+        版本不符時，遊戲只會顯示紅色警告，多半仍可載入。(Material Expressive v5 適用於 1.20.2 及以後版本，IceCool UI v31 適用於 1.16.5~1.20.1，1.20.2 前後的材質包幾乎不[...])
+      </li>
+    </ol>
+
+    <h2>二、下載與解壓縮</h2>
+    <ol>
+      <li>從官方來源下載（<a href="https://icecoolbw.vercel.app/games#minecraft" target="_blank" rel="noopener">https://icecoolbw.vercel.app/games#minecraft</a>）。</li>
+      <li>Material Expressive v5 包含多個檔案（核心 + 配色變體 + 字體擴充），請依需求或全部下載。</li>
+      <li>需要解壓縮時：
+        <ul>
+          <li><strong>Windows</strong>：右鍵 → 全部解壓縮（或用 7-Zip、NanoZip）</li>
+          <li><strong>macOS</strong>：雙擊 zip</li>
+          <li><strong>Linux</strong>：<code>unzip 檔名.zip</code></li>
+        </ul>
+      </li>
+      <li>解壓縮後檢查根目錄是否直接有 <code>pack.mcmeta</code>。若多了一層，把內層資料夾拿出來即可。</li>
+    </ol>
+
+    <blockquote>
+      注意：不要用「解壓縮到同名資料夾」的選項，這很容易造成上述雙層資料夾問題。<br />
+      本材質包 (Material Expressive v5) 請使用「解壓縮至此」。
+    </blockquote>
+
+    <h2>三、放進資源包資料夾</h2>
+    <h3>開啟資料夾的方法</h3>
+    <p>遊戲內：<strong>選項 → 資源包 → 開啟資源包資料夾</strong></p>
+
+    <h3>手動路徑</h3>
+    <table>
+      <thead>
+        <tr><th>系統</th><th>路徑</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Windows</td><td><code>%appdata%\.minecraft\resourcepacks</code></td></tr>
+        <tr><td>macOS</td><td><code>~/Library/Application Support/minecraft/resourcepacks</code></td></tr>
+        <tr><td>Linux</td><td><code>~/.minecraft/resourcepacks</code></td></tr>
+      </tbody>
+    </table>
+
+    <p class="muted">使用 Prism、MultiMC、CurseForge 等啟動器時，路徑會在各自的實例資料夾內：<code>實例資料夾/minecraft/resourcepacks</code>（或 <code>.minecraft/resourcepacks</code>）。</p>
+
+    <h2>四、你的資料夾結構怎麼擺</h2>
+    <p>原生 Minecraft 的資源包畫面 <strong>只掃描 resourcepacks 資料夾第一層</strong>，不會自動進入子資料夾尋找。網站中的分類結構，需要模組支援才會自動分組。</p>
+
+    <p>建議結構如下：</p>
+    <div class="code-tree">
+resourcepacks/
+ ┣━━ Material Expressive 系列/           ← 分類資料夾（需模組支援）
+ ┃   ┣━━ Material Expressive v5/           核心版本
+ ┃   ┣━━ Material Expressive v5 - ReColor Ver./   配色變體
+ ┃   ┗━━ Material Expressive Addon - Roboto v1/   字體擴充
+ ┗━━ 其他材質類型資源包...
+    </div>
+
+    <p><strong>沒有管理模組時</strong>，請把各個資料夾（或 zip）直接放在 <code>resourcepacks</code> 第一層，並用檔名區分，例如：</p>
+    <div class="code-tree">
+resourcepacks/
+ ┣━━ Material Expressive v5.zip
+ ┣━━ Material Expressive v5 - ReColor Ver.zip
+ ┗━━ Material Expressive Addon - Roboto v1.zip
+    </div>
+
+    <h2>五、在遊戲內啟用</h2>
+    <ol>
+      <li>進入 <strong>選項 → 資源包</strong>。</li>
+      <li>左側「可用」清單會出現你的資源包。</li>
+      <li>點資源包上的 <strong>箭頭 ▶</strong> 移到右側「已選擇」。</li>
+      <li>按 <strong>完成</strong>，遊戲會重新載入。</li>
+    </ol>
+
+    <h3>載入順序（重要）</h3>
+    <p>右側清單中，<strong>越上面的優先度越高，會覆蓋下面的</strong>。</p>
+    <p>針對 Material Expressive v5，建議順序（由上到下）：</p>
+
+    <div class="code-tree">
+資源包根目錄
+ ┣━━ Material Expressive 系列 (如果有資源包管理模組推薦使用資料夾)
+ ┃   ┣━━ Material Expressive Addon - Roboto v1 (字體擴充)
+ ┃   ┣━━ 其他擴充 (如：模組支援、選單背景等)
+ ┃   ┣━━ Material Expressive v5 - ReColor Ver. (配色變體)
+ ┃   ┗━━ Material Expressive v5 (核心版本)
+ ┗━━ 其他材質類型資源包...
+    </div>
+
+    <p>原因：擴充與變體只覆蓋少數檔案，必須放在核心之上才會生效。</p>
+
+    <h2>六、處理版本警告</h2>
+    <p><strong>常見訊息</strong></p>
+    <p>「為舊版 Minecraft 製作」或「為新版 Minecraft 製作」：屬於警告，按「是」即可載入，通常能用，但新版新增的 GUI 可能沒有對應貼圖。(材質包5.0.0版本…)</p>
+
+    <h2>七、字體擴充的注意事項</h2>
+    <ul>
+      <li>如果與其他字體類資源包同時使用，只有排在最上面的字體設定會生效。</li>
+    </ul>
+
+    <h2>八、疑難排解</h2>
+    <table>
+      <thead>
+        <tr><th>問題</th><th>解決方法</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>資源包清單裡看不到</td>
+          <td>檢查是否多包一層資料夾，確認 <code>pack.mcmeta</code> 在根目錄，確認副檔名是 <code>.zip</code> 而不是 <code>.zip.zip</code></td>
+        </tr>
+        <tr>
+          <td>啟用後畫面沒變化</td>
+          <td>載入順序錯誤，按 <code>F3 + T</code> 重新載入</td>
+        </tr>
+        <tr>
+          <td>配色變體沒效果</td>
+          <td>確認它排在核心版本上方</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </main>
+</body>
+</html>
