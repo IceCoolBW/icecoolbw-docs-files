@@ -9,11 +9,11 @@
 **1. 材質包可以不解壓縮**</br>
 Minecraft 可以直接讀取 `.zip`。只有在你想整理成資料夾、編輯 `pack.mcmeta`，或使用資料夾分類模組時，才需要解壓縮。
 
-
 **2. 判斷材質包是否可用**</br>
 根目錄必須直接看到 `pack.mcmeta` 和 `assets` 資料夾。
 
 #### ✅ 正確
+
 ```
 Material Expressive v5/
  ┣━━ pack.mcmeta
@@ -22,6 +22,7 @@ Material Expressive v5/
 ```
 
 #### ❌ 錯誤（多包了一層，遊戲會認不出來）
+
 ```
 Material Expressive v5/
  ┗━━ Material Expressive v5/
@@ -29,7 +30,7 @@ Material Expressive v5/
      ┗━━ assets/
 ```
 
-**3. 版本相容性**  </br>
+**3. 版本相容性** </br>
 版本不符時，遊戲只會顯示紅色警告，多半仍可載入。(Material Expressive v5適用於1.20.2及以後版本，IceCool UI v31適用於1.16.5~1.20.1，1.20.2前後的材質包幾乎不可互通)
 
 ---
@@ -39,9 +40,9 @@ Material Expressive v5/
 1. 從官方來源下載（[https://icecoolbw.vercel.app/games#minecraft](https://icecoolbw.vercel.app/games#minecraft)）。
 2. Material Expressive v5包含多個檔案（核心 + 配色變體 + 字體擴充），請依需求或全部下載。
 3. 需要解壓縮時：
-    - **Windows**：右鍵 → 全部解壓縮（或用7-Zip、NanoZip）
-    - **macOS**：雙擊 zip
-    - **Linux**：`unzip 檔名.zip`
+   - **Windows**：右鍵 → 全部解壓縮（或用7-Zip、NanoZip）
+   - **macOS**：雙擊 zip
+   - **Linux**：`unzip 檔名.zip`
 4. 解壓縮後檢查根目錄是否直接有 `pack.mcmeta`。若多了一層，把內層資料夾拿出來即可。
 
 > 注意：不要用「解壓縮到同名資料夾」的選項，這很容易造成上述雙層資料夾問題。
@@ -57,11 +58,11 @@ Material Expressive v5/
 
 ### 手動路徑
 
-|系統|路徑|
-|---|---|
-|Windows|`%appdata%\.minecraft\resourcepacks`|
-|macOS|`~/Library/Application Support/minecraft/resourcepacks`|
-|Linux|`~/.minecraft/resourcepacks`|
+| 系統    | 路徑                                                    |
+| ------- | ------------------------------------------------------- |
+| Windows | `%appdata%\.minecraft\resourcepacks`                    |
+| macOS   | `~/Library/Application Support/minecraft/resourcepacks` |
+| Linux   | `~/.minecraft/resourcepacks`                            |
 
 使用 Prism、MultiMC、CurseForge等啟動器時，路徑會在各自的實例資料夾內：`實例資料夾/minecraft/resourcepacks`（或 `.minecraft/resourcepacks`）。可從啟動器的「開啟資料夾」按鈕進入。
 
@@ -136,8 +137,8 @@ resourcepacks/
 
 ## 八、疑難排解
 
-| 問題                    | 解決方法                                                           |
-| --------------------- | -------------------------------------------------------------- |
-| 資源包清單裡看不到             | 檢查是否多包一層資料夾，確認 `pack.mcmeta` 在根目錄，確認副檔名是 `.zip` 而不是 `.zip.zip` |
-| 啟用後畫面沒變化              | 載入順序錯誤，按 F3 + T 重新載入                                           |
-| 配色變體沒效果               | 確認它排在核心版本上方                                                    |
+| 問題               | 解決方法                                                                                   |
+| ------------------ | ------------------------------------------------------------------------------------------ |
+| 資源包清單裡看不到 | 檢查是否多包一層資料夾，確認 `pack.mcmeta` 在根目錄，確認副檔名是 `.zip` 而不是 `.zip.zip` |
+| 啟用後畫面沒變化   | 載入順序錯誤，按 F3 + T 重新載入                                                           |
+| 配色變體沒效果     | 確認它排在核心版本上方                                                                     |
