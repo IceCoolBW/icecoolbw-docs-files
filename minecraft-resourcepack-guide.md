@@ -13,7 +13,7 @@ Minecraft 可以直接讀取 `.zip`。只有在你想整理成資料夾、編輯
 **2. 判斷材質包是否可用**</br>
 根目錄必須直接看到 `pack.mcmeta` 和 `assets` 資料夾。
 
-### ✅ 正確
+#### ✅ 正確
 ```
 Material Expressive v5/
  ┣━━ pack.mcmeta
@@ -21,7 +21,7 @@ Material Expressive v5/
  ┗━━ assets/
 ```
 
-### ❌ 錯誤（多包了一層，遊戲會認不出來）
+#### ❌ 錯誤（多包了一層，遊戲會認不出來）
 ```
 Material Expressive v5/
  ┗━━ Material Expressive v5/
