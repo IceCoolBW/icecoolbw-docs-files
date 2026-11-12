@@ -6,16 +6,12 @@ IceCoolBW 是一個資深的遊戲頻道，由我一個經營。
 
 本頻道主要以遊戲實況、搞笑精華、教學等內容為主。遊戲部分初期主要遊玩Minecraft，但現在轉為以日常遊玩特戰英豪，Minecraft 則以大型企劃為主，副頻道則會有更多的Minecraft生存系列、The Finals精華以及介面設計等內容。
 
----
-
 ## 關於團隊​
 
 ### CuteTeam是甚麼？
 
 有關於本戰隊之創立過程及有趣記事等資訊請參閱舊版官方網站[Valorant](https://icecoolbw.wixsite.com/icecoolbw-new/valorant)頁面。
 本戰隊非正式特戰戰隊，但我們喜歡打比賽，像是特戰英豪的Premier 我們就非常有興趣，希望能夠互相配合、建立默契來贏得每次的季後賽。
-
----
 
 ## 創作者想說的話
 
